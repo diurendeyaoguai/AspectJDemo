@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.aspect.demo"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+
+    testCompile 'junit:junit:4.12'
+    compile 'org.aspectj:aspectjrt:1.8.9'
+    compile project(':lib')
+    annotationProcessor project(':compiler')
+    compile 'com.github.todou:appbarspring:1.0.3'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
+
+
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit2Version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit2Version"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit2Version"
+    compile project(path: ':cao')
+    compile project(':finder')
+}
+
+
